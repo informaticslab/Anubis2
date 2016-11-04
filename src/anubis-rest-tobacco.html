@@ -1,0 +1,54 @@
+<dom-module id="anubis-rest-tobacco">
+	<template>
+    <div class="page-container">
+    <!--<style include="custom-styles"></style>-->
+    <span class="page-title">Tobacco Use</span>
+    <hr class="hr"/>
+    <!-- <span class="section-title">Welcome!</span> -->
+    <span class="section-paragraph">
+    <br/>
+    <p>
+        <img id="img1" class="container" src="/images/Tobacco.png" on-click="openDialog" on-load="onLoaded"/>
+    </p>
+    <br/>
+      <p>
+      	Check "Yes" if the use of tobacco contributed to death. Tobacco use may contribute to deaths from a wide variety of diseases. Check "No" if tobacco use did not contribute to the death. 
+      </p>
+    </span>
+
+    <simple-overlay id="backdrop-p6" with-backdrop>
+        <img style="width:100%" src="/images/Tobacco.png"/>
+    </simple-overlay>
+</div>
+
+	</template>
+</dom-module>
+<script>
+Polymer({
+	is:"anubis-rest-tobacco",
+    openDialog: function(){
+        //console.log("opened");
+    if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+
+    }
+    else{
+
+        var dialog = document.getElementById("backdrop-p6");
+        if (dialog) {
+          dialog.open();
+        }
+      }
+    },
+    onLoaded: function() {
+      if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+        document.getElementById("img1").style.width="100%";
+      }
+      else
+      {
+        document.getElementById("img1").style.width="auto";
+      }
+    }
+
+});
+
+</script>

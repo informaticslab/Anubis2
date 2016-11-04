@@ -1,0 +1,198 @@
+<!--
+@license
+Copyright (c) 2016 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/app-layout/app-drawer/app-drawer.html">
+<link rel="import" href="../bower_components/app-layout/app-drawer-layout/app-drawer-layout.html">
+<link rel="import" href="../bower_components/app-layout/app-header/app-header.html">
+<link rel="import" href="../bower_components/app-layout/app-header-layout/app-header-layout.html">
+<link rel="import" href="../bower_components/app-layout/app-scroll-effects/app-scroll-effects.html">
+<link rel="import" href="../bower_components/app-layout/app-toolbar/app-toolbar.html">
+<link rel="import" href="../bower_components/app-route/app-location.html">
+<link rel="import" href="../bower_components/app-route/app-route.html">
+
+<link rel="import" href="/bower_components/iron-flex-layout/iron-flex-layout-classes.html">
+<link rel="import" href="../bower_components/iron-pages/iron-pages.html">
+<link rel="import" href="../bower_components/iron-selector/iron-selector.html">
+
+<link rel="import" href="../bower_components/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="/bower_components/paper-item/paper-item.html">
+<link rel="import" href="/bower_components/paper-menu/paper-menu.html">
+<link rel="import" href="/bower_components/paper-menu/paper-submenu.html">
+
+<link rel="import" href="my-icons.html">
+
+<!-- Neon elements -->
+<link rel="import" href="/bower_components/neon-animation/neon-animated-pages.html">
+<link rel="import" href="/bower_components/neon-animation/neon-animatable.html">
+<link rel="import" href="/bower_components/neon-animation/neon-animations.html">
+
+<link rel="import" href="/src/simple-overlay.html">
+
+<!-- Should be loaded last -->
+<link rel="import" href="/bower_components/iron-icons/iron-icons.html">
+
+
+
+<dom-module id="my-app">
+
+<style include="iron-flex iron-flex-alignment">
+
+<style>
+
+
+
+    paper-menu#menu2> paper-item{
+      padding-left: 30px;
+      font-size: 14px;
+      padding-bottom: 10px;
+      padding-top: 0px;
+    }
+
+
+    paper-item>span{
+      cursor: default;
+    }
+
+    paper-item{
+      cursor: pointer;
+    }
+
+    paper-item.menu-trigger{
+      cursor: default;
+    }
+
+
+    /*Remove paper-tem focussed background-color*/
+    paper-menu {
+      --paper-menu-focused-item-after: {
+        background-color: rgb(250, 250, 250);
+        opacity: 0;
+      };
+    }
+    paper-item:focus:before {
+      background-color: rgb(250, 250, 250);
+      opacity: 0;
+    }
+
+
+</style>
+
+
+  <template>
+
+    <app-location route="{{route}}"></app-location>
+    <app-route
+        route="{{route}}"
+        pattern="/:page"
+        data="{{routeData}}"
+        tail="{{subroute}}"></app-route>
+
+    <app-drawer-layout>
+      
+      <app-drawer>
+      <app-toolbar>Menu</app-toolbar>
+
+              <paper-menu id="menu11" selected="{{page}}" attr-for-selected="name" role="navigation">
+          
+          <paper-item name="introduction">Introduction</paper-item>
+          
+          <paper-submenu>
+            <paper-item class="menu-trigger">
+              <span class="flex">Guidelines</span>
+              <iron-icon icon="expand-more"></iron-icon>
+            </paper-item>
+            <paper-menu id="menu2" class="menu-content sublist second-level" selected="{{page}}" attr-for-selected="name" role="navigation">
+              <paper-item name="generalinstructions">General Instructions</paper-item>
+              <paper-item name="medicalcertification">Medical Certification of Death</paper-item>
+            </paper-menu>
+          </paper-submenu>
+
+          <paper-item name="pronouncingdeath">Pronouncing Death</paper-item>
+          <paper-item name="certifyingdeath">Certifying Cause of Death</paper-item>
+
+        </paper-menu>
+
+
+      </app-drawer>
+
+    <app-toolbar>
+      <paper-icon-button icon="menu" drawer-toggle></paper-icon-button>
+    </app-toolbar>
+
+    <app-header reveals>
+  <app-toolbar>
+    <div main-title>App name</div>
+  </app-toolbar>
+</app-header>
+
+    <sample-content size="100">
+              <neon-animated-pages id="pages" class="flex" selected="{{pageselected}}" attr-for-selected="name" entry-animation="fade-in-animation" exit-animation="fade-out-animation">
+          <hbcod-pronouncingdeath name="pronouncingdeath"></hbcod-pronouncingdeath>
+          <hbcod-introduction name="introduction"></hbcod-introduction>
+          <hbcod-medicalcertification name="medicalcertification"></hbcod-medicalcertification>
+          <hbcod-generalinstructions name="generalinstructions"></hbcod-generalinstructions>
+          <hbcod-certifyingdeath name="certifyingdeath"></hbcod-certifyingdeath>
+        </neon-animated-pages>
+
+
+    </sample-content>
+
+
+    </app-drawer-layout>
+  </template>
+
+  <script>
+    Polymer({
+      is: 'my-app',
+
+      properties: {
+        page: {
+          type: String,
+          reflectToAttribute: true,
+          observer: '_pageChanged'
+        }
+      },
+
+      observers: [
+        '_routePageChanged(routeData.page)'
+      ],
+
+      _routePageChanged: function(page) {
+        
+        this.page = page || 'introduction';
+        
+
+
+      },
+
+      _pageChanged: function(page) {
+        // Load page import on demand. Show 404 page if fails
+        console.log(page);  
+        if(page==null)
+        {
+          console.log(page);  
+        }
+        else{
+          this.pageselected=page;
+          var resolvedPageUrl = this.resolveUrl('hbcod-' + page + '.html');
+          this.importHref(resolvedPageUrl, this.set('route.path','/' + page), this._showPage404, true);
+          
+
+        }
+        
+      },
+
+      _showPage404: function() {
+        this.page = 'introduction';
+      }
+    });
+  </script>
+</dom-module>
