@@ -49,25 +49,24 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 
 
-    paper-menu#menu2> paper-item{
+    paper-item>span{
+      cursor: default;
+    };
+
+    paper-item{
+      cursor: pointer;
+    };
+
+    paper-submenu>paper-menu>paper-item.second-level{
       padding-left: 30px;
       font-size: 14px;
       padding-bottom: 10px;
       padding-top: 0px;
-    }
-
-
-    paper-item>span{
-      cursor: default;
-    }
-
-    paper-item{
-      cursor: pointer;
-    }
+    };
 
     paper-item.menu-trigger{
       cursor: default;
-    }
+    };
 
 
     /*Remove paper-tem focussed background-color*/
@@ -76,13 +75,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         background-color: rgb(250, 250, 250);
         opacity: 0;
       };
-    }
+    };
     paper-item:focus:before {
       background-color: rgb(250, 250, 250);
       opacity: 0;
-    }
-
-
+    };
 </style>
 
 
@@ -100,7 +97,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       <app-drawer>
       <app-toolbar>Menu</app-toolbar>
 
-              <paper-menu id="menu11" selected="{{page}}" attr-for-selected="name" role="navigation">
+              
+        <paper-menu id="menu11" selected="{{page}}" attr-for-selected="name" role="navigation">
           
           <paper-item name="introduction">Introduction</paper-item>
           
@@ -109,14 +107,39 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
               <span class="flex">Guidelines</span>
               <iron-icon icon="expand-more"></iron-icon>
             </paper-item>
-            <paper-menu id="menu2" class="menu-content sublist second-level" selected="{{page}}" attr-for-selected="name" role="navigation">
-              <paper-item name="generalinstructions">General Instructions</paper-item>
-              <paper-item name="medicalcertification">Medical Certification of Death</paper-item>
+            <paper-menu class="menu-content sublist" selected="{{page}}" attr-for-selected="name" role="navigation">
+              <paper-item class="second-level" name="generalinstructions">General Instructions</paper-item>
+              <paper-item class="second-level" name="medicalcertification">Medical Certification of Death</paper-item>
             </paper-menu>
           </paper-submenu>
 
           <paper-item name="pronouncingdeath">Pronouncing Death</paper-item>
           <paper-item name="certifyingdeath">Certifying Cause of Death</paper-item>
+
+          <paper-submenu>
+            <paper-item class="menu-trigger">
+              <span class="flex">Completing Parts I and II</span>
+              <iron-icon icon="expand-more"></iron-icon>
+            </paper-item>
+            <paper-menu class="menu-content sublist" selected="{{page}}" attr-for-selected="name" role="navigation">
+              <paper-item class="second-level" name="generalinstructions">Part 1</paper-item>
+              <paper-item class="second-level" name="medicalcertification">Part 2</paper-item>
+            </paper-menu>
+          </paper-submenu>
+
+          <paper-submenu>
+            <paper-item class="menu-trigger">
+              <span class="flex">Common Problems</span>
+              <iron-icon icon="expand-more"></iron-icon>
+            </paper-item>
+            <paper-menu class="menu-content sublist" selected="{{page}}" attr-for-selected="name" role="navigation">
+              <paper-item class="uncertainty" name="uncertainty">Uncertainty</paper-item>
+              <paper-item class="advancedage" name="advancedage">Advanced Age</paper-item>
+              <paper-item class="infants" name="infants">Infants</paper-item>
+              <paper-item class="avoidingambiguity" name="avoidingambiguity">Ambiguity</paper-item>
+              <paper-item class="unnaturalcauses" name="unnaturalcauses">Unnatural Causes</paper-item>
+            </paper-menu>
+          </paper-submenu>
 
         </paper-menu>
 
@@ -134,12 +157,19 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 </app-header>
 
     <sample-content size="100">
-              <neon-animated-pages id="pages" class="flex" selected="{{pageselected}}" attr-for-selected="name" entry-animation="fade-in-animation" exit-animation="fade-out-animation">
+        <neon-animated-pages id="pages" class="flex" selected="{{pageselected}}" attr-for-selected="name" entry-animation="fade-in-animation" exit-animation="fade-out-animation">
           <hbcod-pronouncingdeath name="pronouncingdeath"></hbcod-pronouncingdeath>
           <hbcod-introduction name="introduction"></hbcod-introduction>
           <hbcod-medicalcertification name="medicalcertification"></hbcod-medicalcertification>
           <hbcod-generalinstructions name="generalinstructions"></hbcod-generalinstructions>
           <hbcod-certifyingdeath name="certifyingdeath"></hbcod-certifyingdeath>
+          <hbcod-part1 name="part1"></hbcod-part1>
+          <hbcod-part2 name="part2"></hbcod-part2>
+          <hbcod-uncertainty name="uncertainty"></hbcod-uncertainty>
+          <hbcod-advancedage name="advancedage"></hbcod-advancedage>
+          <hbcod-infants name="infants"></hbcod-infants>
+          <hbcod-avoidingambiguity name="avoidingambiguity"></hbcod-avoidingambiguity>
+          <hbcod-unnaturalcauses name="unnaturalcauses"></hbcod-unnaturalcauses>
         </neon-animated-pages>
 
 

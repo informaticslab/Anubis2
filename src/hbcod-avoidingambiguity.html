@@ -1,5 +1,6 @@
 <!-- <link rel="import" href="/styles/custom-theme.html"> -->
-<dom-module id="anubis-problems-avoidingambiguity">
+<dom-module id="hbcod-avoidingambiguity">
+<link rel="import" href="/styles/custom.css" type="css">
 <link rel="import" href="/styles/custom-theme.css" type="css">
 <style is="custom-style">
   .small {
@@ -210,10 +211,10 @@ If the certifier is unable to determine the etiology of a process, then it must 
 
 </div>
 	</template>
-</dom-module>
+
 <script>
 Polymer({
-	is:"anubis-problems-avoidingambiguity",
+	is:"hbcod-avoidingambiguity",
 	toggle: function(e) {
 		//console.log(e);
 		//console.log(e.target.id);
@@ -232,16 +233,16 @@ Polymer({
 		
 		
 
-		document.querySelector('#'+id+'Collapse').toggle();
+		this.$$('#'+id+'Collapse').toggle();
 		
 
-		if(document.querySelector('#'+id+'Collapse').opened)
+		if(this.$$('#'+id+'Collapse').opened)
 		{
-			document.querySelector('#'+id+'CollapseIcon').icon='remove-circle-outline';
+			this.$$('#'+id+'CollapseIcon').icon='remove-circle-outline';
 		}
 		else
 		{
-			document.querySelector('#'+id+'CollapseIcon').icon='add-circle-outline';
+			this.$$('#'+id+'CollapseIcon').icon='add-circle-outline';
 		}
 
 	}
@@ -249,3 +250,4 @@ Polymer({
 });
 
 </script>
+</dom-module>
