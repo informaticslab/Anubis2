@@ -18,13 +18,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../bower_components/app-route/app-location.html">
 <link rel="import" href="../bower_components/app-route/app-route.html">
 
-<link rel="import" href="/bower_components/iron-flex-layout/iron-flex-layout-classes.html">
+<link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout-classes.html">
 <link rel="import" href="../bower_components/iron-pages/iron-pages.html">
 <link rel="import" href="../bower_components/iron-selector/iron-selector.html">
 
 <link rel="import" href="../bower_components/paper-icon-button/paper-icon-button.html">
 <link rel="import" href="/bower_components/paper-item/paper-item.html">
 <link rel="import" href="/bower_components/paper-menu/paper-menu.html">
+<link rel="import" href="/bower_components/paper-menu-button/paper-menu-button.html">
 <link rel="import" href="/bower_components/paper-menu/paper-submenu.html">
 
 <link rel="import" href="my-icons.html">
@@ -38,7 +39,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 <!-- Should be loaded last -->
 <link rel="import" href="/bower_components/iron-icons/iron-icons.html">
-
 
 
 <dom-module id="my-app">
@@ -57,17 +57,18 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       cursor: pointer;
     };
 
+
+
+    paper-item.menu-trigger{
+      cursor: default;
+    };
+
     paper-submenu>paper-menu>paper-item.second-level{
       padding-left: 30px;
       font-size: 14px;
       padding-bottom: 10px;
       padding-top: 0px;
     };
-
-    paper-item.menu-trigger{
-      cursor: default;
-    };
-
 
     /*Remove paper-tem focussed background-color*/
     paper-menu {
@@ -80,7 +81,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       background-color: rgb(250, 250, 250);
       opacity: 0;
     };
+
+
 </style>
+
+<link rel="import" href="/styles/custom-theme.css" type="css">
+<link rel="import" href="/styles/custom.css" type="css">
 
 
   <template>
@@ -92,91 +98,68 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         data="{{routeData}}"
         tail="{{subroute}}"></app-route>
 
-    <app-drawer-layout>
-      
-      <app-drawer>
-      <app-toolbar>Menu</app-toolbar>
+<app-drawer-layout>
+  <app-drawer>
 
-              
-        <paper-menu id="menu11" selected="{{page}}" attr-for-selected="name" role="navigation">
-          
-          <paper-item name="introduction">Introduction</paper-item>
-          
-          <paper-submenu>
-            <paper-item class="menu-trigger">
-              <span class="flex">Guidelines</span>
-              <iron-icon icon="expand-more"></iron-icon>
-            </paper-item>
-            <paper-menu class="menu-content sublist" selected="{{page}}" attr-for-selected="name" role="navigation">
-              <paper-item class="second-level" name="generalinstructions">General Instructions</paper-item>
-              <paper-item class="second-level" name="medicalcertification">Medical Certification of Death</paper-item>
+
+  </app-drawer>
+  <app-header-layout>
+    <app-header>
+      <app-toolbar id="mainToolbar">
+        <paper-icon-button icon="menu" drawer-toggle></paper-icon-button>
+        <div id="title" class="flex">SAFER - HEALTHIER - PEOPLE</div>
+        <paper-menu-button id="more-menu" vertical-align="top" horizontal-align="right" closeOnActivate="true">
+            <paper-icon-button icon="icons:more-vert" class="dropdown-trigger" closeOnActivate="true"></paper-icon-button>
+            <paper-menu id="aboutmenu" class="dropdown-content" attr-for-selected="name" selected="{{page}}" closeOnActivate="true">
+              <paper-item name="about">
+                About&nbsp;Us
+              </paper-item>
             </paper-menu>
-          </paper-submenu>
+                    
+        </paper-menu-button> 
+      </app-toolbar>
+    </app-header>
 
-          <paper-item name="pronouncingdeath">Pronouncing Death</paper-item>
-          <paper-item name="certifyingdeath">Certifying Cause of Death</paper-item>
+    <neon-animated-pages id="pages" class="flex" selected="{{pageselected}}" attr-for-selected="name" entry-animation="fade-in-animation" exit-animation="fade-out-animation">
+    <hbcod-pronouncingdeath name="pronouncingdeath"></hbcod-pronouncingdeath>
+    <hbcod-introduction name="introduction"></hbcod-introduction>
+    <hbcod-medicalcertification name="medicalcertification"></hbcod-medicalcertification>
+    <hbcod-generalinstructions name="generalinstructions"></hbcod-generalinstructions>
+    <hbcod-certifyingdeath name="certifyingdeath"></hbcod-certifyingdeath>
+    <hbcod-part1 name="part1"></hbcod-part1>
+    <hbcod-part2 name="part2"></hbcod-part2>
+    <hbcod-uncertainty name="uncertainty"></hbcod-uncertainty>
+    <hbcod-advancedage name="advancedage"></hbcod-advancedage>
+    <hbcod-infants name="infants"></hbcod-infants>
+    <hbcod-avoidingambiguity name="avoidingambiguity"></hbcod-avoidingambiguity>
+    <hbcod-unnaturalcauses name="unnaturalcauses"></hbcod-unnaturalcauses>
+    <hbcod-autopsy name="autopsy"></hbcod-autopsy>
+    <hbcod-tobacco name="tobacco"></hbcod-tobacco>
+    <hbcod-pregnancy name="pregnancy"></hbcod-pregnancy>
+    <hbcod-mannerofdeath name="mannerofdeath"></hbcod-mannerofdeath>
+    <hbcod-causeofdeath name="causeofdeath"></hbcod-causeofdeath>
+    <hbcod-resources name="resources"></hbcod-resources>
+    <hbcod-about name="about"></hbcod-about>
+    <hbcod-welcome name="welcome"></hbcod-welcome>
 
-          <paper-submenu>
-            <paper-item class="menu-trigger">
-              <span class="flex">Completing Parts I and II</span>
-              <iron-icon icon="expand-more"></iron-icon>
-            </paper-item>
-            <paper-menu class="menu-content sublist" selected="{{page}}" attr-for-selected="name" role="navigation">
-              <paper-item class="second-level" name="generalinstructions">Part 1</paper-item>
-              <paper-item class="second-level" name="medicalcertification">Part 2</paper-item>
-            </paper-menu>
-          </paper-submenu>
+    <hbcod-example1 name="example1"></hbcod-example1>
+    <hbcod-example2 name="example2"></hbcod-example2>
+    <hbcod-example3 name="example3"></hbcod-example3>
+    <hbcod-example4 name="example4"></hbcod-example4>
+    <hbcod-example5 name="example5"></hbcod-example5>
+    <hbcod-example6 name="example6"></hbcod-example6>
+    <hbcod-example7 name="example7"></hbcod-example7>
+    <hbcod-example8 name="example8"></hbcod-example8>
+    <hbcod-example9 name="example9"></hbcod-example9>
+    <hbcod-example10 name="example10"></hbcod-example10>
+    <hbcod-example11 name="example11"></hbcod-example11>
+    <hbcod-example12 name="example12"></hbcod-example12>
+    <hbcod-example13 name="example13"></hbcod-example13>
+  </neon-animated-pages>
 
-          <paper-submenu>
-            <paper-item class="menu-trigger">
-              <span class="flex">Common Problems</span>
-              <iron-icon icon="expand-more"></iron-icon>
-            </paper-item>
-            <paper-menu class="menu-content sublist" selected="{{page}}" attr-for-selected="name" role="navigation">
-              <paper-item class="uncertainty" name="uncertainty">Uncertainty</paper-item>
-              <paper-item class="advancedage" name="advancedage">Advanced Age</paper-item>
-              <paper-item class="infants" name="infants">Infants</paper-item>
-              <paper-item class="avoidingambiguity" name="avoidingambiguity">Ambiguity</paper-item>
-              <paper-item class="unnaturalcauses" name="unnaturalcauses">Unnatural Causes</paper-item>
-            </paper-menu>
-          </paper-submenu>
+  </app-header-layout>
+</app-drawer-layout>
 
-        </paper-menu>
-
-
-      </app-drawer>
-
-    <app-toolbar>
-      <paper-icon-button icon="menu" drawer-toggle></paper-icon-button>
-    </app-toolbar>
-
-    <app-header reveals>
-  <app-toolbar>
-    <div main-title>App name</div>
-  </app-toolbar>
-</app-header>
-
-    <sample-content size="100">
-        <neon-animated-pages id="pages" class="flex" selected="{{pageselected}}" attr-for-selected="name" entry-animation="fade-in-animation" exit-animation="fade-out-animation">
-          <hbcod-pronouncingdeath name="pronouncingdeath"></hbcod-pronouncingdeath>
-          <hbcod-introduction name="introduction"></hbcod-introduction>
-          <hbcod-medicalcertification name="medicalcertification"></hbcod-medicalcertification>
-          <hbcod-generalinstructions name="generalinstructions"></hbcod-generalinstructions>
-          <hbcod-certifyingdeath name="certifyingdeath"></hbcod-certifyingdeath>
-          <hbcod-part1 name="part1"></hbcod-part1>
-          <hbcod-part2 name="part2"></hbcod-part2>
-          <hbcod-uncertainty name="uncertainty"></hbcod-uncertainty>
-          <hbcod-advancedage name="advancedage"></hbcod-advancedage>
-          <hbcod-infants name="infants"></hbcod-infants>
-          <hbcod-avoidingambiguity name="avoidingambiguity"></hbcod-avoidingambiguity>
-          <hbcod-unnaturalcauses name="unnaturalcauses"></hbcod-unnaturalcauses>
-        </neon-animated-pages>
-
-
-    </sample-content>
-
-
-    </app-drawer-layout>
   </template>
 
   <script>
@@ -197,7 +180,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       _routePageChanged: function(page) {
         
-        this.page = page || 'introduction';
+        this.page = page || 'welcome';
         
 
 
@@ -205,10 +188,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       _pageChanged: function(page) {
         // Load page import on demand. Show 404 page if fails
-        console.log(page);  
+        //console.log(page);  
         if(page==null)
         {
-          console.log(page);  
+          //console.log(page);  
         }
         else{
           this.pageselected=page;
@@ -217,6 +200,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           
 
         }
+        
+      },
+
+      closeMenu: function(page) {
+        var temp=this.page;
+        this.page="#";
+        this.page=temp;
+
+        document.querySelector('#aboutmenu').opened=false;
         
       },
 

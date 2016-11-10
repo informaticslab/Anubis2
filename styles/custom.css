@@ -13,8 +13,17 @@
 #drawer{
 background-color: #fafafa;
 }
+#mainToolbar{
+	background-color: #f37018;
+	color:#ffffff;
+}
 
-paper-toolbar#drawerToolbar{
+#title{
+	font-size: 16px;
+	padding-left: 10px;
+}
+
+app-toolbar#drawerToolbar{
 	background-image: url('/images/drawer-image1.jpg');
 	background-repeat: no-repeat;
 	/*background-size: contain;*/

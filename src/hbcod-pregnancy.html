@@ -1,4 +1,7 @@
-<dom-module id="anubis-rest-pregnancy">
+<dom-module id="hbcod-pregnancy">
+<link rel="import" href="/styles/custom.css" type="css">
+<link rel="import" href="/styles/custom-theme.css" type="css">
+<link rel="import" href="/src/simple-overlay.html">
 	<template>
     <div class="page-container">
     <!--<style include="custom-styles"></style>-->
@@ -8,7 +11,7 @@
     <span class="section-paragraph">
     <br/>
     <p>
-        <img id="img2" class="container" src="/images/Pregnancy.png" on-click="openDialog" on-load="onLoaded"/>
+        <img id="imgP" class="container" src="/images/Pregnancy.png" on-click="openDialog" on-load="onLoaded"/>
     </p>
     <br/>
       <p>
@@ -16,39 +19,43 @@
       </p>
     </span>
 
-    <simple-overlay id="backdrop-p5" with-backdrop>
+    <simple-overlay id="backdropP" with-backdrop>
         <img style="width:100%" src="/images/Pregnancy.png"/>
     </simple-overlay>
 
 </div>
 
 	</template>
-</dom-module>
 <script>
 Polymer({
-	is:"anubis-rest-pregnancy",
-  openDialog: function(){
-        //console.log("opened");
+    is:"hbcod-pregnancy",
+    openDialog: function(){
+
+        
     if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+
     }
     else{
 
-        var dialog = document.getElementById("backdrop-p5");
+        var dialog = this.$.backdropP;
+            
         if (dialog) {
           dialog.open();
         }
-      }
+    }
     },
     onLoaded: function() {
       if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
-        document.getElementById("img2").style.width="100%";
+
+        this.$.imgP.style.width='100%';
       }
       else
       {
-        document.getElementById("img2").style.width="auto";
+        this.$.imgP.style.width="auto";
       }
     }
 
 });
 
 </script>
+</dom-module>
