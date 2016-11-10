@@ -16,31 +16,33 @@ A 102-year-old female was brought to the hospital because her word combinations 
     <p>
         <img class="container" src="/images/Example 13.png" on-click="openDialog"/>
     </p>
-    <simple-overlay id="backdrop-ch13" with-backdrop>
+    <simple-overlay id="backdropE13" with-backdrop>
         <img style="width:100%" src="/images/Example 13.png"/>
     </simple-overlay>
 		</span>
 
 </div>
 	</template>
-</dom-module>
+
 <script>
 Polymer({
-	is:"hbcod-example13",
-	openDialog: function(){
-        //console.log("opened");
+    is:"hbcod-example13",
+    openDialog: function(){
+
+
     if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
 
     }
     else{
-        var dialog = document.getElementById("backdrop-ch13");
-        if (dialog) {
-          dialog.open();
-        }
-    }
-    }
 
+            var dialog = this.$.backdropE13;
+            if (dialog) {
+              dialog.open();
+            }
+        }
+    },
 
 });
 
 </script>
+</dom-module>

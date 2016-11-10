@@ -80,12 +80,12 @@ div.anchor-list ul{list-style:none;margin-top:0;padding-left:0;color: #f37018;}
 div.anchor-list li{font-size:20px;line-height:40px}
 div.anchor-list li:last-child{line-height:20px;padding-top:10px}
 
-paper-menu-button#more-menu{
+/*paper-menu-button#more-menu{
 padding:0;
 }
 paper-icon-button#menu-icon{
 padding:0;
-}
+}*/
 
 
 .partstable{

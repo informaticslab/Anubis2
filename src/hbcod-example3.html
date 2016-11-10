@@ -18,7 +18,7 @@ A 75-year-old male was admitted to the hospital complaining of severe chest pain
 
         <img class="container" src="/images/Example 3.png" on-click="openDialog"/>
     </p>
-    <simple-overlay id="backdrop-ch3" with-backdrop>
+    <simple-overlay id="backdropE3" with-backdrop>
         <img style="width:100%" src="/images/Example 3.png"/>
     </simple-overlay>
 <p>
@@ -31,24 +31,25 @@ Acute myocardial infarction, listed in Part I, line (a) as the immediate cause o
 
 </div>
 	</template>
-</dom-module>
 <script>
 Polymer({
-	is:"hbcod-example3",
-	openDialog: function(){
-        //console.log("opened");
+    is:"hbcod-example3",
+    openDialog: function(){
+
+
     if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
 
     }
     else{
-        var dialog = document.getElementById("backdrop-ch3");
-        if (dialog) {
-          dialog.open();
-        }
-    }
-    }
 
+            var dialog = this.$.backdropE3;
+            if (dialog) {
+              dialog.open();
+            }
+        }
+    },
 
 });
 
 </script>
+</dom-module>

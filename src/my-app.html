@@ -172,7 +172,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           </paper-submenu>
           <hr class="hr-menu">
 
-          <paper-item name="causeofdeath">Certifying Cause of Death</paper-item>
+          <paper-item name="causeofdeath">Changes to Cause of Death</paper-item>
           <hr class="hr-menu">
 
           <paper-submenu>
@@ -210,9 +210,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       <app-toolbar id="mainToolbar">
         <paper-icon-button icon="menu" drawer-toggle></paper-icon-button>
         <div id="title" class="flex">SAFER - HEALTHIER - PEOPLE</div>
-        <paper-menu-button id="more-menu" vertical-align="top" horizontal-align="right">
+        <paper-menu-button id="moreMenu" vertical-align="top" horizontal-align="right" closeOnActivate=true>
             <paper-icon-button icon="icons:more-vert" class="dropdown-trigger"></paper-icon-button>
-            <paper-menu id="aboutmenu" class="dropdown-content" attr-for-selected="name" selected="{{pageselected}}" on-iron-activate="closeMenu">
+            <paper-menu id="aboutmenu" class="dropdown-content" attr-for-selected="name" selected="{{page}}">
               <paper-item name="about">
                 About&nbsp;Us
               </paper-item>
@@ -266,7 +266,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <script>
     Polymer({
       is: 'my-app',
-
+      ready: function() {
+        //this.$.moreMenu.closeOnActivate = true;
+        this.$.moreMenu.closeOnActivate=true;
+      },
       properties: {
         page: {
           type: String,
@@ -306,7 +309,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       _showPage404: function() {
         this.page = 'introduction';
-      }
+      },
+
+
+
     });
   </script>
 </dom-module>
