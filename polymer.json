@@ -1,9 +1,11 @@
 {
   "entrypoint": "index.html",
+  "shell":"../src/my-app.html",
   "fragments": [
 
   ],
   "sourceGlobs": [
+   "styles/**/*",
    "src/**/*",
    "images/**/*",
    "bower.json"
